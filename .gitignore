@@ -4,3 +4,4 @@ launch.json
 /.vscode
 web.config
 **/node_modules/
+**/package-lock.json
