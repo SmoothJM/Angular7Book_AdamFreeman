@@ -1,0 +1,6 @@
+*.log
+/.vs
+launch.json
+/.vscode
+web.config
+**/node_modules/
