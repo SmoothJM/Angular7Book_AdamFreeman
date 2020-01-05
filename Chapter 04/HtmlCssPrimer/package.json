@@ -1,0 +1,14 @@
+{
+  "name": "HtmlCssPrimer",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "^4.1.1"
+  },
+  "devDependencies": {
+    "lite-server": "2.3.0"
+  },
+  "scripts": {
+    "start": "npm run lite",
+    "lite": "lite-server"
+  }
+}

@@ -5,3 +5,4 @@ launch.json
 web.config
 **/node_modules/
 **/package-lock.json
+**/.idea/
