@@ -1,0 +1,13 @@
+store.module.ts: 中declare的是各个子组件
+model.module.ts: 中provide的是各个服务和数据源
+
+
+
+
+
+
+
+
+
+
+
