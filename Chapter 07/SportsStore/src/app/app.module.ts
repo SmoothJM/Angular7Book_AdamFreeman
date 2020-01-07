@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 
 import { StoreModule } from './store/store.module';
 import { StoreFirstGuard } from './storeFirst.guard';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { StoreFirstGuard } from './storeFirst.guard';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule
+    StoreModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [StoreFirstGuard],
   bootstrap: [AppComponent]
