@@ -43,9 +43,9 @@ export class Cart {
     this.cartPrice = 0;
     this.lines.forEach(l => {
       this.itemCount += l.quantity;
-      this.cartPrice += (l.quantity * l.product.price);
+      // this.cartPrice += (l.quantity * l.product.price);
       // TODO 测试下面这个
-      // this.cartPrice += l.lineTotal;
+      this.cartPrice += l.lineTotal;
     });
   }
 }

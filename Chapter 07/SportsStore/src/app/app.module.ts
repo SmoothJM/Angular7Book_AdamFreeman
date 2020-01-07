@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { StoreModule } from './store/store.module';
-import {StoreFirstGuard} from './storeFirst.guard';
+import { StoreFirstGuard } from './storeFirst.guard';
 
 
 @NgModule({

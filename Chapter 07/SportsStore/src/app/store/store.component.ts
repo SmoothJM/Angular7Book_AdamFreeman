@@ -49,7 +49,7 @@ export class StoreComponent {
   }
   addProductToCart(product: Product) {
     this.cart.addLine(product);
-    this.router.navigateByUrl('/cart');
+    // this.router.navigateByUrl('/cart');
   }
 }
 

@@ -12,7 +12,12 @@
         Home
       </button>
       <button *ngFor="let category of categories" class="btn btn-outline-primary btn-block"
-      [class.active] = "category==selectedCategory" (click)="changeCategory(category)">{{category}}</button>
+      [class.active] = "category==selectedCategory" (click)="changeCategory(category)">
+        {{category}}
+      </button>
+      <button class="btn btn-primary btn-block mt-5" routerLink="/admin">
+        Admin
+      </button>
     </div>
     <div class="col-9 p-2">
       <div *ngFor="let product of products" class="card m-1 p-1 bg-light text-dark">
