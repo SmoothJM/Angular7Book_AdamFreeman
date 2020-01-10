@@ -45,7 +45,10 @@ export class Model {
     return candidate;
   }
 
-
+  swapProduct(): void {
+    const p = this.products.shift();
+    this.products.push(new Product(p.id, p.name, p.category, p.price));
+  }
 
 
 

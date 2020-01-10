@@ -1,3 +1,132 @@
-<div class="{{getClasses()}} text-white m-2 p-2">
-  There are {{model.getProducts().length}} products in the model.
+<!-- Chapter 12 -->
+<!--<div [ngClass]="'text-white m-2 p-2 ' + getClasses(1)">-->
+<!--  There are {{model.getProducts().length}} products in the model.-->
+<!--</div>-->
+<!--<button class="btn btn-secondary ml-2" (click)="saveProduct()">Add</button>-->
+<!--<div class="form-group m-2" text>-->
+<!--  <label>Name:-->
+<!--    <input [value]="model.getProduct(2)?.name || 'None'" class="form-control" >-->
+<!--  </label>-->
+<!--</div>-->
+<!--<div [ngClass]="'text-white m-2 p-2 ' + getClasses()">-->
+<!--  Name: {{model.getProduct(1)?.name || 'None'}}-->
+<!--</div>-->
+<!--<table class="table table-sm table-bordered table-striped m-2">-->
+<!--  <thead>-->
+<!--    <tr>-->
+<!--      <th>1</th>-->
+<!--      <th>2</th>-->
+<!--      <th>3</th>-->
+<!--      <th>4</th>-->
+<!--      <th>5</th>-->
+<!--    </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--    <tr>-->
+<!--      <td [attr.colspan]="model.getProducts().length">-->
+<!--        {{model.getProduct(1)?.name || 'None'}}-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--  </tbody>-->
+<!--</table>-->
+<!-- ****************** -->
+<!--<div class="m-2 text-white">-->
+<!--  <div [class] = "getClasses(1)">-->
+<!--    The first product is {{model.getProduct(1).name}}.-->
+<!--  </div>-->
+<!--  <div [class.bg-success]="model.getProduct(2).price<=50"-->
+<!--       [class.bg-danger]="model.getProduct(2).price>50"-->
+<!--      [class.p-2]="true">-->
+<!--    The second product is {{model.getProduct(2).name}}.-->
+<!--  </div>-->
+<!--</div>-->
+<!-- ****************** -->
+<!--<div class="m-2 text-white">-->
+<!--  <div class="p-2" [ngClass]="getClassMap(1)">-->
+<!--    The <span [style.fontSize]="fontSizeWithUnits">first</span> product is {{model.getProduct(1).name}}.-->
+<!--  </div>-->
+<!--  <div class="p-2" [ngClass]="getClassMap(2)">-->
+<!--    The  <span [style.fontSize.px]="fontSizeWithoutUnits">second</span> product is {{model.getProduct(2).name}}.-->
+<!--  </div>-->
+<!--  <div class="p-2" [ngClass]="{'bg-success':model.getProduct(3).price<50,-->
+<!--                              'bg-warning':model.getProduct(3).price<=50}">-->
+<!--    The third product is {{model.getProduct(3).name}}.-->
+<!--  </div>-->
+<!--</div>-->
+<!-- ****************** -->
+<!--<div class="m-2 text-white">-->
+<!--  <div class="p-2" [ngClass]="getClassMap(1)">-->
+<!--    The <span [ngStyle]="getStyles(1)">first</span> product is {{model.getProduct(1).name}}.-->
+<!--  </div>-->
+<!--  <div class="p-2" [ngClass]="getClassMap(2)">-->
+<!--    The  <span [ngStyle]="getStyles(2)">second</span> product is {{model.getProduct(2).name}}.-->
+<!--  </div>-->
+<!--</div>-->
+<!-- ****************** -->
+<!--<div class="m-2 text-white">-->
+<!--  <div [ngClass]="getClassesByPosition(0)">-->
+<!--    The first product is {{getProductByPosition(0).name}}.-->
+<!--  </div>-->
+<!--  <div [ngClass]="getClassesByPosition(1)">-->
+<!--    The second product is {{getProductByPosition(1).name}}.-->
+<!--  </div>-->
+<!--</div>-->
+
+<!-- Chapter 13 -->
+<div class="text-white m-2">
+  <ng-template [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title:'Header'}"></ng-template>
+  <div class="p-2 bg-info">
+    There are {{getProductCount()}} products.
+  </div>
+  <ng-template #titleTemplate let-msg="title">
+    <h4 class="mt-2 p-2 bg-success">{{msg}}</h4>
+  </ng-template>
+  <ng-template [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{title:'Footer'}"></ng-template>
+  <div class="bg-info p-2 text-white">
+    <button class="btn btn-outline-secondary" (click)="nextProduct">a</button>
+  </div>
+  <div class="bg-info mt-2 p-2">
+    The rounded price is {{math.floor(getProduct(1).price)}}
+  </div>
+  <div class="bg-info mt-2 p-2">
+    The rounded price is {{getProductPrice(1)}}
+  </div>
+<!--  ngIf -->
+<!--  <div class="bg-info mt-2 p-2" *ngIf="getProductCount() > 4">-->
+<!--    There are more than 4 products in the model.-->
+<!--  </div>-->
+<!--  <div class="bg-info mt-2 p-2" *ngIf="getProductByPosition(1).name != 'Kayak'">-->
+<!--    The first product is not a Kayak-->
+<!--  </div>-->
+
+<!--  ngSwitch -->
+<!--  <div class="bg-info mt-1 p-2" [ngSwitch]="getProductCount()">-->
+<!--    <span *ngSwitchCase="2">2</span>-->
+<!--    <span *ngSwitchCase="5">5</span>-->
+<!--    <span *ngSwitchDefault>default</span>-->
+<!--  </div>-->
+
+<!--  ngFor -->
+<!--  <table class="text-dark table table-striped table-bordered table-sm mt-2">-->
+<!--    <thead>-->
+<!--      <tr>-->
+<!--        <th>Index</th>-->
+<!--        <th>Name</th>-->
+<!--        <th>Category</th>-->
+<!--        <th>Price</th>-->
+<!--      </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--      <tr *ngFor="let pro of getProducts(); let i = index; let o = odd; let f = first; let l = last; trackBy:getKey"-->
+<!--      [class.bg-primary]="o" [class.bg-secondary]="!o" [class.text-danger]="f" [class.text-info]="l">-->
+<!--        <td>{{i+1}}</td>-->
+<!--        <td>{{pro.name}}</td>-->
+<!--        <td>{{pro.category}}</td>-->
+<!--        <td>{{pro.price}}</td>-->
+<!--      </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
 </div>
+
+
+
