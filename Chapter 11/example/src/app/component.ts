@@ -1,8 +1,8 @@
 import { Component, ApplicationRef } from '@angular/core';
-import { Model } from './repository.model';
-import { Product } from './product.model';
+// import { Model } from './repository.model';
+// import { Product } from './product.model';
 import { NgForm } from '@angular/forms';
-import {ProductFormGroup} from './form.model';
+// import {ProductFormGroup} from './form.model';
 
 @Component({
   selector: "app",
@@ -15,7 +15,7 @@ export class ProductComponent {
   //   (window as any).appRef = ref;
   //   (window as any).model = this.model;
   // }
-  public model = new Model();
+  // public model = new Model();
   // public selectedProduct: string;
   // public product: Product;
   // public fontSizeWithUnits = '30px';
@@ -105,9 +105,12 @@ export class ProductComponent {
   //   this.model.deleteProduct(id);
   // }
 
-  addProduct(p: Product) {
-    this.model.saveProduct(p);
-  }
+  // constructor(private model: Model) {
+  // }
+  //
+  // addProduct(p: Product) {
+  //   this.model.saveProduct(p);
+  // }
   // getValidationMessage(state: any, thingName?: string): string[] {
   //   const thing: string = state.path || thingName;
   //   const message: string[] = [];

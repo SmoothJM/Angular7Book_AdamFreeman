@@ -1,42 +1,42 @@
-<div>
-  <label>Tax Rate:</label>
-  <select [value]="taxRate || 0" (change)="taxRate=$event.target.value">
-    <option value="0">None</option>
-    <option value="10">10%</option>
-    <option value="20">20%</option>
-    <option value="50">50%</option>
-  </select>
-</div>
+<!--  <label>Tax Rate:</label>-->
+<!--  <select [value]="taxRate || 0" (change)="taxRate=$event.target.value">-->
+<!--    <option value="0">None</option>-->
+<!--    <option value="10">10%</option>-->
+<!--    <option value="20">20%</option>-->
+<!--    <option value="50">50%</option>-->
+<!--  </select>-->
+<!--</div>-->
 
-<div>
-  <label>Category Filter:</label>
-  <select [(ngModel)]="categoryFilter">
-    <option>Watersports</option>
-    <option>Soccer</option>
-    <option>Chess</option>
-  </select>
-</div>
+<!--<div>-->
+<!--  <label>Category Filter:</label>-->
+<!--  <select [(ngModel)]="categoryFilter">-->
+<!--    <option>Watersports</option>-->
+<!--    <option>Soccer</option>-->
+<!--    <option>Chess</option>-->
+<!--  </select>-->
+<!--</div>-->
 
-<div class="bg-info p-2 text-white">
-  <label>Number of items:</label>
-  <select [value]="itemCount" (change)="itemCount = $event.target.value">
-    <option *ngFor="let item of getProducts(); let i=index" [value]="i+1">
-      {{i+1}}
-    </option>
-  </select>
-</div>
+<!--<div class="bg-info p-2 text-white">-->
+<!--  <label>Number of items:</label>-->
+<!--  <select [value]="itemCount" (change)="itemCount = $event.target.value">-->
+<!--    <option *ngFor="let item of getProducts(); let i=index" [value]="i+1">-->
+<!--      {{i+1}}-->
+<!--    </option>-->
+<!--  </select>-->
+<!--</div>-->
 
-
-<table *paIf="showTable" [paCellDarkColor]="darkColor"
+<!--[paCellDarkColor]="darkColor"-->
+<table *paIf="showTable"
        class="table table-sm table-bordered table-striped">
-  <tr><th>Index</th><th>Name</th><th>Category</th><th>Price</th><th></th></tr>
-  <tr *paFor="let item of getProducts() | filter:categoryFilter | slice:0:(itemCount || 1); let i = index; let odd = odd;
+  <tr class=" text-dark"><th>Index</th><th>Name</th><th>Category</th><th>Price</th><th>Discount</th><th></th></tr>
+  <tr *paFor="let item of getProducts(); let i = index; let odd = odd;
             let even = even" [class.bg-info]="odd" [class.bg-warning]="even">
     <td style="vertical-align:middle">{{i + 1}}</td>
     <td style="vertical-align:middle">{{item.name}}</td>
     <td style="vertical-align:middle">{{item.category}}</td>
 <!--    <td style="vertical-align:middle">{{item.price | addTax:(taxRate || 0) | currency: 'USD'}}</td>-->
-    <td style="vertical-align:middle">{{item.price | number:'5.1-1'}}</td>
+    <td style="vertical-align:middle">{{item.price | discount | currency: 'USD'}}</td>
+    <td style="vertical-align:middle" [pa-price]="item.price" #discount='discount'>{{discount.discountAmount | currency: 'USD'}}</td>
     <td class="text-xs-center">
       <button class="btn btn-danger btn-sm" (click)="deleteProduct(i)">
         Delete
@@ -44,3 +44,13 @@
     </td>
   </tr>
 </table>
+
+<paDiscountEditor ></paDiscountEditor>
+<paDiscountDisplay ></paDiscountDisplay>
+
+
+
+
+
+
+

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Output, ViewEncapsulation} from '@angular/core';
 import {Product} from './product.model';
 import {ProductFormGroup} from './form.model';
+import { Model } from './repository.model';
 
 @Component({
   selector: 'paProductForm',
@@ -12,9 +13,10 @@ export class ProductFormComponent {
   form: ProductFormGroup = new ProductFormGroup();
   newProduct: Product = new Product();
   formSubmitted: boolean = false;
-
-  @Output('paNewProduct')
-  newProductEvent = new EventEmitter();
+  constructor(private model: Model) {
+  }
+  // @Output('paNewProduct')
+  // newProductEvent = new EventEmitter();
 
   submitForm (form: any): void {
     this.form.productControls.forEach(con => {
@@ -22,7 +24,8 @@ export class ProductFormComponent {
     });
     this.formSubmitted = true;
     if (form.valid) {
-      this.newProductEvent.emit(this.newProduct);
+      // this.newProductEvent.emit(this.newProduct);
+      this.model.saveProduct(this.newProduct);
       this.form.reset();
       this.formSubmitted = false;
     }
