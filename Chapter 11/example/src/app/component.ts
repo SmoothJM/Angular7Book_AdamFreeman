@@ -84,29 +84,28 @@ export class ProductComponent {
   // getProductPrice(id: number): number {
   //   return this.math.floor(this.getProduct(id).price);
   // }
-  formSubmitted = false;
-  newProduct: Product = new Product();
-  form: ProductFormGroup = new ProductFormGroup();
-  showTable: boolean = true;
-  darkColor: boolean = false;
-
-  getProduct(key: number): Product {
-    return this.model.getProduct(key);
-  }
-
-  getProducts(): Product[] {
-    return this.model.getProducts();
-  }
-
-  get jsonProduct() {
-    return JSON.stringify(this.newProduct);
-  }
-  deleteProduct(id: number){
-    this.model.deleteProduct(id);
-  }
+  // formSubmitted = false;
+  // newProduct: Product = new Product();
+  // form: ProductFormGroup = new ProductFormGroup();
+  // showTable: boolean = true;
+  // darkColor: boolean = false;
+  //
+  // getProduct(key: number): Product {
+  //   return this.model.getProduct(key);
+  // }
+  //
+  // getProducts(): Product[] {
+  //   return this.model.getProducts();
+  // }
+  //
+  // get jsonProduct() {
+  //   return JSON.stringify(this.newProduct);
+  // }
+  // deleteProduct(id: number){
+  //   this.model.deleteProduct(id);
+  // }
 
   addProduct(p: Product) {
-    console.log('New Product: ' + this.jsonProduct);
     this.model.saveProduct(p);
   }
   // getValidationMessage(state: any, thingName?: string): string[] {
@@ -140,15 +139,15 @@ export class ProductComponent {
   //   return messages;
   // }
 
-  submitForm(form: NgForm): void {
-    this.formSubmitted = true;
-    if (form.valid) {
-      this.addProduct(this.newProduct);
-      this.newProduct = new Product();
-      this.formSubmitted = false;
-      form.reset();
-    }
-  }
+  // submitForm(form: NgForm): void {
+  //   this.formSubmitted = true;
+  //   if (form.valid) {
+  //     this.addProduct(this.newProduct);
+  //     this.newProduct = new Product();
+  //     this.formSubmitted = false;
+  //     form.reset();
+  //   }
+  // }
 
 
 
