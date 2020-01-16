@@ -153,26 +153,5 @@ export class ProductComponent {
   // }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 

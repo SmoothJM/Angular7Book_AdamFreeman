@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
-import { Model } from './repository.model';
-import { Product } from './product.model';
-import {DiscountService} from './discount.service';
+import { Model } from '../model/repository.model';
+import { Product } from '../model/product.model';
+import {DiscountService} from '../common/discount.service';
 
 @Component({
   selector: 'paProductTable',
@@ -13,7 +13,7 @@ export class ProductTableComponent {
   // dateObject: Date = new Date(2020, 1, 20);
   // dateString: string = '2020-02-21T00:00:00.000z';
   // dateNumber: number =1582243200000;
-  // discounter: DiscountService = new DiscountService();
+  discounter: DiscountService = new DiscountService();
 
   constructor(private dataModel: Model) {
   }
