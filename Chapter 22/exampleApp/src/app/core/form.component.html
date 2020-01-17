@@ -1,0 +1,64 @@
+
+<div class="bg-primary mb-2 p-2 text-white" [class.bg-info]="editing">
+  <h5>{{editing? 'Edit Mode': 'Create Mode'}}</h5>
+  Last Event: {{stateEvents | async | formatState}}
+</div>
+
+<form #form='ngForm' (ngSubmit)="submitForm(form)" (reset)="resetForm()">
+  <div class="form-group">
+    <label>Name</label>
+    <input required class="form-control" name="name" [(ngModel)]="product.name"
+        >
+<!--        value="{{editing && this.pass.id>0? this.model.getProduct(this.pass.id).name: ''}}"      -->
+
+  </div>
+  <div class="form-group">
+    <label>Category</label>
+    <input required class="form-control" name="category" [(ngModel)]="product.category"
+          >
+<!--      value="{{editing && this.pass.id>0? this.model.getProduct(this.pass.id).category: ''}}"      -->
+
+  </div>
+  <div class="form-group">
+    <label>Price</label>
+    <input required pattern="^[0-9\.]+$" class="form-control" name="price" [(ngModel)]="product.price"
+        >
+<!--       value="{{editing && this.pass.id>0? this.model.getProduct(this.pass.id).price: ''}}"       -->
+
+  </div>
+  <button class="btn btn-primary m-1 p-2" type="submit"
+  [class.bg-info]="editing" [disabled]="form.invalid">
+    {{editing? 'Save Change':'Create'}}
+  </button>
+  <button class="btn btn-secondary m-1 p-2" type="reset">Reset</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<button class="m-2 btn btn-secondary btn-sm" [disabled]="submitted" (click)="click()" (mouseover)="click()">
+  {{submitted?'Fool! ':'No Touching '}}<span *ngIf="submitted">(Try later on {{second}})</span>
+</button>
+
+
+
+
+
+
+

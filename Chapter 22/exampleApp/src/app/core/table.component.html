@@ -1,0 +1,39 @@
+<table class="table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Price</th>
+      <th>Operations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pro of getProducts(); let i=index;">
+      <td>{{i+1}}</td>
+      <td>{{pro.name}}</td>
+      <td>{{pro.category}}</td>
+      <td>{{pro.price | currency:'USD'}}</td>
+      <td>
+        <button class="btn btn-sm btn-danger mr-2" (click)="deleteProduct(pro.id)">Delete</button>
+        <button class="btn btn-sm btn-warning" (click)="editProduct(pro.id)">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="m-2">
+  <button class="btn btn-secondary" (click)="createProduct()">
+    Create New Product
+  </button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
