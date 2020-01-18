@@ -1,4 +1,5 @@
 <div *ngIf="lastMessage" class="bg-info text-white p-2 text-center"
-     [class.bg-danger]="lastMessage.error">
+     [class.bg-danger]="lastMessage.error"
+      [class.bg-primary]="lastMessage.text == 'CREATE'">
   {{lastMessage.text}}
 </div>
