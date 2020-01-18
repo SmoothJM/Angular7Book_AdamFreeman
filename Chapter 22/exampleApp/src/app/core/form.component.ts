@@ -1,11 +1,13 @@
 import {Component, Inject} from '@angular/core';
 import {Product} from '../model/product.model';
 import {Model} from '../model/repository.model';
-import {MODES, SHARED_STATE, SharedState} from './sharedState.model';
+// import {MODES, SHARED_STATE, SharedState} from './sharedState.model';
 import {NgForm} from '@angular/forms';
 // import {Pass} from './pass.model';
 import {Observable} from 'rxjs';
-import {filter, map, distinctUntilChanged, skipWhile} from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+
+// import {filter, map, distinctUntilChanged, skipWhile} from 'rxjs/operators';
 
 @Component({
   selector: 'paForm',
@@ -19,7 +21,23 @@ export class FormComponent {
 
   constructor(private model: Model,
               // private state: SharedState,
-              @Inject(SHARED_STATE) private stateEvents: Observable<SharedState>) {
+              // @Inject(SHARED_STATE) private stateEvents: Observable<SharedState>,
+              private activeRoute: ActivatedRoute,
+              private router: Router) {
+    this.editing = activeRoute.snapshot.params['mode'] == 'edit';
+    let id = activeRoute.snapshot.params['id'];
+    let name = activeRoute.snapshot.params['name'];
+    let category = activeRoute.snapshot.params['category'];
+    let price = activeRoute.snapshot.params['price'];
+    if (name != null && category != null && price != null){
+      this.product.id = id;
+      this.product.name = name;
+      this.product.category = category;
+      this.product.price = price;
+    } else {
+      Object.assign(this.product, model.getProduct(id) || new Product());
+    }
+
     // stateEvents.pipe(filter(state => state.id !== 3))
     //   .pipe(map(state => new SharedState(state.mode, state.id == 5? 1: state.id)))
     //   .subscribe((ss) => {
@@ -41,18 +59,18 @@ export class FormComponent {
     //     }
     //   });
 
-    stateEvents
+    // stateEvents
       // .pipe(skipWhile(state => state.mode == MODES.EDIT))
       // .pipe(distinctUntilChanged((firstState, secondState) =>
       //   firstState.mode == secondState.mode
       //   && firstState.id == secondState.id))
-      .subscribe(update => {
-        this.product = new Product();
-        if (update.id != undefined) {
-          Object.assign(this.product, this.model.getProduct(update.id));
-        }
-        this.editing = update.mode == MODES.EDIT;
-      });
+      // .subscribe(update => {
+      //   this.product = new Product();
+      //   if (update.id != undefined) {
+      //     Object.assign(this.product, this.model.getProduct(update.id));
+      //   }
+      //   this.editing = update.mode == MODES.EDIT;
+      // });
   }
 
   // get editing(): boolean {
@@ -62,9 +80,9 @@ export class FormComponent {
 
   submitForm(form: NgForm): void {
     if (form.valid) {
-      console.log(JSON.stringify(this.product));
-      this.model.saveProduct(this.product);
-      this.product = new Product();
+      // this.model.saveProduct(this.product);
+      // this.product = new Product();
+      this.router.navigateByUrl('/');
       form.reset();
     }
   }

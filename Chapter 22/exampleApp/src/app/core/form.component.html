@@ -1,7 +1,7 @@
 
 <div class="bg-primary mb-2 p-2 text-white" [class.bg-info]="editing">
   <h5>{{editing? 'Edit Mode': 'Create Mode'}}</h5>
-  Last Event: {{stateEvents | async | formatState}}
+<!--  Last Event: {{stateEvents | async | formatState}}-->
 </div>
 
 <form #form='ngForm' (ngSubmit)="submitForm(form)" (reset)="resetForm()">
@@ -30,7 +30,7 @@
   [class.bg-info]="editing" [disabled]="form.invalid">
     {{editing? 'Save Change':'Create'}}
   </button>
-  <button class="btn btn-secondary m-1 p-2" type="reset">Reset</button>
+  <button class="btn btn-secondary m-1 p-2" type="reset" routerLink="/">Cancel</button>
 </form>
 
 

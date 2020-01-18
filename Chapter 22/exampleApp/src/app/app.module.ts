@@ -23,10 +23,10 @@ import { MessageComponent } from './messages/message.component';
   ],
   providers: [],
   bootstrap: [
-    // AppComponent,
-    TableComponent,
-    FormComponent,
-    MessageComponent
+    AppComponent,
+    // TableComponent,
+    // FormComponent,
+    // MessageComponent
   ]
 })
 export class AppModule { }
