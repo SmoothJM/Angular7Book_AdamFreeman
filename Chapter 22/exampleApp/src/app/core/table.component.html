@@ -1,29 +1,52 @@
-<table class="table table-sm table-striped">
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Category</th>
-    <th>Price</th>
-    <th>Operations</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let pro of getProducts(); let i=index;">
-    <td>{{i + 1}}</td>
-    <td>{{pro.name}}</td>
-    <td>{{pro.category}}</td>
-    <td>{{pro.price | currency:'USD'}}</td>
-    <td>
-      <button class="btn btn-sm btn-danger mr-2" (click)="deleteProduct(pro.id)">Delete</button>
-      <button class="btn btn-sm btn-warning" [routerLink]="['/form', 'edit', pro.id,
-      {name: pro.name, category: pro.category, price: pro.price}]">Edit
-<!--        (click)="editProduct(pro.id)"-->
-      </button>
-    </td>
-  </tr>
-  </tbody>
-</table>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <button class="btn btn-secondary btn-block" routerLink="/table"
+              routerLinkActive="bg-primary" [routerLinkActiveOptions]="{exact:true}">All</button>
+      <button *ngFor="let category of categories" class="btn btn-secondary btn-block"
+      routerLink="/table/{{category}}" routerLinkActive="bg-primary">{{category}}</button>
+    </div>
+    <div class="col-9">
+<!--      <button class="btn btn-info mr-2" routerLink="/table/products">Count Products</button>-->
+<!--      <button class="btn btn-info mr-2" routerLink="/table/categories">Count Categories</button>-->
+<!--      <button class="btn btn-info" routerLink="/table">Count Neither</button>-->
+      <button class="btn btn-info mr-2" routerLink="products">Count Products</button>
+      <button class="btn btn-info mr-2" routerLink="categories">Count Categories</button>
+
+      <div class="my-2">
+        <router-outlet></router-outlet>
+      </div>
+      <table class="table table-sm table-striped">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Operations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let pro of getProducts(); let i=index;">
+          <td>{{i + 1}}</td>
+          <td>{{pro.name}}</td>
+          <td>{{pro.category}}</td>
+          <td>{{pro.price | currency:'USD'}}</td>
+          <td>
+            <button class="btn btn-sm btn-danger mr-2" (click)="deleteProduct(pro.id)">Delete</button>
+            <button class="btn btn-sm btn-warning" [routerLink]="['/form', 'edit', pro.id]">Edit
+              <!--       {name: pro.name, category: pro.category, price: pro.price}]"-->
+              <!--        (click)="editProduct(pro.id)"-->
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
 <div class="m-2">
 <!--  (click)="createProduct()"  -->
   <button class="btn btn-secondary" routerLink="/form/create">
@@ -35,7 +58,11 @@
     Generate HTTP Error
   </button>
 </div>
-
+<div class="m-2">
+  <button class="btn btn-danger" routerLink="/does/not/exist">
+    Generate Routing Error
+  </button>
+</div>
 
 
 

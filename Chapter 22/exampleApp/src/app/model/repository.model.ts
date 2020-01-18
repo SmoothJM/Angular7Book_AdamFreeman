@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Product } from './product.model';
+import {Injectable} from '@angular/core';
+import {Product} from './product.model';
 // import { StaticDataSource } from './static.datasource';
-import { Observable } from 'rxjs';
-import { RestDataSource } from './rest.datasource';
+import {Observable} from 'rxjs';
+import {RestDataSource} from './rest.datasource';
 
 @Injectable()
 export class Model {
@@ -41,7 +41,7 @@ export class Model {
   deleteProduct(id: number) {
     this.dataSource.deleteProduct(id).subscribe(() => {
       let index = this.products.findIndex(p => this.locator(p, id));
-      if (index>-1) {
+      if (index > -1) {
         this.products.splice(index, 1);
       }
     });
@@ -53,6 +53,24 @@ export class Model {
       candidate++;
     }
     return candidate;
+  }
+
+  getNextProductId(id: number): number {
+    let index = this.products.findIndex(p => this.locator(p, id));
+    if (index > -1) {
+      return this.products[this.products.length > index + 1 ? index + 1 : 0].id;
+    } else {
+      return id || 0;
+    }
+  }
+
+  getPreProductId(id: number): number {
+    let index = this.products.findIndex(p => this.locator(p, id));
+    if (index > -1) {
+      return this.products[index > 0 ? index - 1 : this.products.length - 1].id;
+    } else {
+      return id || 0;
+    }
   }
 }
 

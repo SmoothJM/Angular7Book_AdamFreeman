@@ -4,7 +4,7 @@ import {Model} from '../model/repository.model';
 // import {MODES, SHARED_STATE, SharedState} from './sharedState.model';
 import {NgForm} from '@angular/forms';
 // import {Pass} from './pass.model';
-import {Observable} from 'rxjs';
+// import {Observable} from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
 // import {filter, map, distinctUntilChanged, skipWhile} from 'rxjs/operators';
@@ -24,19 +24,33 @@ export class FormComponent {
               // @Inject(SHARED_STATE) private stateEvents: Observable<SharedState>,
               private activeRoute: ActivatedRoute,
               private router: Router) {
-    this.editing = activeRoute.snapshot.params['mode'] == 'edit';
-    let id = activeRoute.snapshot.params['id'];
-    let name = activeRoute.snapshot.params['name'];
-    let category = activeRoute.snapshot.params['category'];
-    let price = activeRoute.snapshot.params['price'];
-    if (name != null && category != null && price != null){
-      this.product.id = id;
-      this.product.name = name;
-      this.product.category = category;
-      this.product.price = price;
-    } else {
-      Object.assign(this.product, model.getProduct(id) || new Product());
-    }
+
+    activeRoute.params.subscribe(params => {
+      this.editing = params['mode'] == 'edit';
+      let id = params['id'];
+      if (id != null) {
+        Object.assign(this.product, model.getProduct(id) || new Product());
+      }
+    });
+
+    // this.editing = activeRoute.snapshot.params['mode'] == 'edit';
+    // let id = activeRoute.snapshot.params['id'];
+    // if (id != null) {
+    //   Object.assign(this.product, model.getProduct(id) || new Product());
+    // }
+
+
+    // let name = activeRoute.snapshot.params['name'];
+    // let category = activeRoute.snapshot.params['category'];
+    // let price = activeRoute.snapshot.params['price'];
+    // if (name != null && category != null && price != null){
+    //   this.product.id = id;
+    //   this.product.name = name;
+    //   this.product.category = category;
+    //   this.product.price = price;
+    // } else {
+    //   Object.assign(this.product, model.getProduct(id) || new Product());
+    // }
 
     // stateEvents.pipe(filter(state => state.id !== 3))
     //   .pipe(map(state => new SharedState(state.mode, state.id == 5? 1: state.id)))
@@ -80,10 +94,10 @@ export class FormComponent {
 
   submitForm(form: NgForm): void {
     if (form.valid) {
-      // this.model.saveProduct(this.product);
+      this.model.saveProduct(this.product);
       // this.product = new Product();
       this.router.navigateByUrl('/');
-      form.reset();
+      // form.reset();
     }
   }
 

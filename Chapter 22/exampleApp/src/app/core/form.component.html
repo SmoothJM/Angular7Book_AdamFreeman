@@ -32,8 +32,12 @@
   </button>
   <button class="btn btn-secondary m-1 p-2" type="reset" routerLink="/">Cancel</button>
 </form>
-
-
+<div *ngIf="editing" class="p-2 mt-2">
+  <button class="btn btn-secondary mr-2"
+  routerLink="/form/edit/{{model.getPreProductId(product.id)}}">Previous</button>
+  <button class="btn btn-secondary"
+  routerLink="/form/edit/{{model.getNextProductId(product.id)}}">Next</button>
+</div>
 
 
 
