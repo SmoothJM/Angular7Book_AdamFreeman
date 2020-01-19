@@ -9,6 +9,8 @@ import { TableComponent } from './core/table.component';
 import { FormComponent } from './core/form.component';
 import { MessageModule } from './messages/message.module';
 import { MessageComponent } from './messages/message.component';
+import {TermsGuard} from './terms.guard';
+import {LoadGuard} from './load.guard';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,10 @@ import { MessageComponent } from './messages/message.component';
     CoreModule,
     MessageModule
   ],
-  providers: [],
+  providers: [
+    TermsGuard,
+    LoadGuard
+  ],
   bootstrap: [
     AppComponent,
     // TableComponent,

@@ -15,9 +15,7 @@ export class MessageComponent {
   constructor(private messageService: MessageService,
               private router: Router) {
     // messageService.registerMessageHandler(m=> this.lastMessage = m);
-    messageService.messages.subscribe(m => {
-      this.lastMessage = m;
-    });
+    messageService.messages.subscribe(m => this.lastMessage = m);
     router.events
       .pipe(filter(e => e instanceof NavigationEnd || e instanceof NavigationCancel))
       .subscribe(e => {

@@ -4,7 +4,7 @@
 <!--  Last Event: {{stateEvents | async | formatState}}-->
 </div>
 
-<form #form='ngForm' (ngSubmit)="submitForm(form)" (reset)="resetForm()">
+<form #form='ngForm' (ngSubmit)="submitForm(form)"> <!--(reset)="resetForm()"-->
   <div class="form-group">
     <label>Name</label>
     <input required class="form-control" name="name" [(ngModel)]="product.name"
